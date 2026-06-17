@@ -1,2 +1,2 @@
-# HypeMap
-Map Trends. Find Creators. Launch Campaigns.
+# EventMesh: Distributed Event Bus
+
