@@ -1,0 +1,14 @@
+# GitOps dashboard reload without container restart (see updateIntervalSeconds).
+apiVersion: 1
+
+providers:
+  - name: Lazarus
+    orgId: 1
+    folder: Lazarus
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 30
+    allowUiUpdates: true
+    options:
+      path: /etc/grafana/provisioning/dashboards
+      foldersFromFilesStructure: false

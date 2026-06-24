@@ -1,0 +1,44 @@
+# Retention and runtime flags live in docker-compose (.env); this file is scrape config only.
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    cluster: lazarus
+    environment: development
+
+# Deferred until Phase 4+ SLO alert rules.
+rule_files: []
+  # - /etc/prometheus/rules/*.yml
+
+scrape_configs:
+  - job_name: prometheus
+    static_configs:
+      - targets:
+          - localhost:9090
+        labels:
+          service: prometheus
+
+  # App jobs commented out — avoids permanent DOWN targets before Phase 4 metrics exist.
+  # - job_name: orchestrator
+  #   metrics_path: /metrics
+  #   scrape_interval: 15s
+  #   static_configs:
+  #     - targets:
+  #         - orchestrator:3001
+  #       labels:
+  #         service: orchestrator
+
+  # - job_name: remediation-engine
+  #   metrics_path: /metrics
+  #   scrape_interval: 15s
+  #   static_configs:
+  #     - targets:
+  #         - remediation-engine:8000
+  #       labels:
+  #         service: remediation-engine
+
+  # kafka-exporter deferred — app-level lag gauges preferred over broker exporter in Phase 1.
+  # - job_name: kafka-exporter
+  #   static_configs:
+  #     - targets: ['kafka-exporter:9308']
