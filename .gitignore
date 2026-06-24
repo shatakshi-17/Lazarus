@@ -98,3 +98,6 @@ coverage/
 *.key
 *.crt
 secrets/
+
+.cursor* 
+.cursorignore
