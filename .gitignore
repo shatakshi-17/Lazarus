@@ -102,7 +102,7 @@ secrets/
 .cursor* 
 .cursorignore
 docs/
-Master Implementation Plan.md
+"Master Implementation Plan.md"
 prompt.txt
 arch_*.md
 arch_01.md
