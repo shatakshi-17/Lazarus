@@ -1,0 +1,55 @@
+# Lazarus Prometheus configuration
+# Mounted into the prometheus container at /etc/prometheus/prometheus.yml (Subtask 5).
+# Retention and some runtime flags are passed via docker-compose command line
+# from .env (PROMETHEUS_RETENTION_TIME, etc.) — values here are the scrape config.
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    cluster: lazarus
+    environment: development
+
+# Alert rules — empty for Phase 1 infra bootstrap; Phase 4+ may add SLO alerts here.
+rule_files: []
+  # - /etc/prometheus/rules/*.yml
+
+scrape_configs:
+  # ── Self-monitoring ─────────────────────────────────────────────────────────
+  # Prometheus scrapes its own /metrics so the "Prometheus" job appears UP in the UI.
+  - job_name: prometheus
+    static_configs:
+      - targets:
+          - localhost:9090
+        labels:
+          service: prometheus
+
+  # ── NestJS orchestrator (Phase 4) ───────────────────────────────────────────
+  # Uncomment when orchestrator exposes GET /metrics on lazarus-mesh.
+  # Target hostname matches the docker-compose service name and ORCHESTRATOR_METRICS_URL.
+  # - job_name: orchestrator
+  #   metrics_path: /metrics
+  #   scrape_interval: 15s
+  #   static_configs:
+  #     - targets:
+  #         - orchestrator:3001
+  #       labels:
+  #         service: orchestrator
+
+  # ── Python remediation-engine (Phase 4) ───────────────────────────────────────
+  # Uncomment when FastAPI worker exposes Prometheus metrics (HTTP /metrics or pushgateway).
+  # - job_name: remediation-engine
+  #   metrics_path: /metrics
+  #   scrape_interval: 15s
+  #   static_configs:
+  #     - targets:
+  #         - remediation-engine:8000
+  #       labels:
+  #         service: remediation-engine
+
+  # ── Future: Kafka / Redis exporters (optional) ────────────────────────────────
+  # Not required for Phase 1. Add kafka-exporter or redis-exporter services in Compose
+  # if you want broker/stream lag metrics before custom app gauges exist.
+  # - job_name: kafka-exporter
+  #   static_configs:
+  #     - targets: ['kafka-exporter:9308']

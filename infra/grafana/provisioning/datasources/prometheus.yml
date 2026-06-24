@@ -1,0 +1,18 @@
+# Auto-provision Prometheus as the default Grafana datasource on container start.
+# Grafana reads files in provisioning/datasources/ at startup — no UI click required.
+# URL uses Docker Compose service name on lazarus-mesh (not localhost).
+
+apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+    uid: prometheus
+    access: proxy
+    url: http://prometheus:9090
+    isDefault: true
+    editable: false
+    jsonData:
+      # Match Prometheus global scrape_interval (infra/prometheus/prometheus.yml)
+      timeInterval: 15s
+      httpMethod: POST

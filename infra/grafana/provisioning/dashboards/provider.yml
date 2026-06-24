@@ -1,0 +1,16 @@
+# Tells Grafana where to find file-based dashboard JSON on disk.
+# Dashboards in this folder reload every 30s — edits to JSON appear without restart.
+
+apiVersion: 1
+
+providers:
+  - name: Lazarus
+    orgId: 1
+    folder: Lazarus
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 30
+    allowUiUpdates: true
+    options:
+      path: /etc/grafana/provisioning/dashboards
+      foldersFromFilesStructure: false

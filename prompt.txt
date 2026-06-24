@@ -1,0 +1,37 @@
+# PROJECT DOCUMENTATION PROTOCOL
+
+Whenever instructed to "refer prompt.txt", your absolute highest priority is to document the task you just completed with extreme detail, clarity, and simplicity. 
+
+**Target Audience:** You must write this documentation as if conducting Knowledge Transfer (KT) for a newly hired entry-level engineer. Avoid dense jargon. Explain the "why" as clearly as the "what."
+
+**Location & File Management:**
+- All logs must be stored in the `docs/` folder.
+- Keep appending your entries to the currently active architectural markdown file (e.g., `docs/arch_01.md`).
+- I will manually tell you when to switch to the next volume (e.g., "switch to arch_02"). Do not create a new file until I explicitly give that instruction.
+- Ensure the formatting remains impeccably clean, readable, and perfectly aligned with the markdown structure below.
+
+---
+
+### LOG ENTRY TEMPLATE
+(Copy this exact format for every single entry, replacing the bracketed text with the actual details)
+
+## Task Log - [Insert Timestamp]
+- **Intent:** [What exact feature or bugfix did we just implement?]
+- **Feature / Broader Function:** [Which larger feature/subsystem does this belong to, and how does this specific change advance it?]
+
+### Files & Folders
+*(For EVERY file or folder touched, list it below with these exact three sub-bullets. Do not combine them into one line.)*
+
+**`[Insert File/Folder Path]`**
+  - **Role:** [What this file is and why it matters — explain in plain, simple language.]
+  - **Linkage:** [What other files it connects to, depends on, or is used by — explicitly name the other files/services.]
+  - **Feature:** [Which bigger feature/plane it serves, and how it contributes to the whole.]
+
+### Code & Execution
+- **Lines Affected:** [e.g., Lines 24-45, "New File Created", or "Entire file refactored"]
+- **Code Modification Details:** [What exact code or logic was added, changed, or removed? Explain the mechanics simply.]
+- **Commands Run:** [Any terminal commands tied to this change (installs, migrations, tests, builds, git). If none, write "None."]
+
+### Rationale & Troubleshooting
+- **Architectural Rationale:** [Why did we choose this approach over the alternatives? What is the backend impact regarding concurrency, safety, complexity, or performance?]
+- **Erroneous / Abandoned Steps:** [(If Applicable) What exact error trace did we hit? Why did it happen? How did we roll back or pivot? If none, write "None."]

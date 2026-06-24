@@ -1,0 +1,100 @@
+# ── Secrets & local env (never commit) ───────────────────────────────────────
+.env
+.env.*
+!.env.example
+
+# ── Node.js (orchestrator/, dashboard/) ──────────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+dist/
+build/
+.next/
+out/
+.nuxt/
+.cache/
+*.tsbuildinfo
+.eslintcache
+
+# ── Python (remediation-engine/) ─────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+.envrc
+*.egg-info/
+.eggs/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.hypothesis/
+poetry.lock.bak
+
+# ── Docker & Compose local overrides ─────────────────────────────────────────
+docker-compose.override.yml
+docker-compose.*.local.yml
+
+# ── Observability / runtime data (local volumes, not infra config) ────────────
+infra/prometheus/data/
+infra/grafana/data/
+*.wal
+
+# ── Logs & temp ──────────────────────────────────────────────────────────────
+logs/
+*.log
+tmp/
+temp/
+*.tmp
+*.swp
+*.swo
+*~
+
+# ── OS noise ─────────────────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# OneDrive sync artifacts (plan risk R6 — Windows dev on synced Desktop)
+~$*
+*.odtmp
+*.tmp.driveupload
+*.tmp.drivedownload
+
+# ── IDE / editor ─────────────────────────────────────────────────────────────
+.idea/
+*.iml
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json.example
+*.code-workspace
+
+# Cursor local state (keep shared rules/skills tracked)
+.cursor/.pending_log.json
+
+# ── Test & load artifacts ────────────────────────────────────────────────────
+load-testing/results/
+k6-summary.json
+coverage/
+.nyc_output/
+
+# ── Misc ─────────────────────────────────────────────────────────────────────
+*.pem
+*.key
+*.crt
+secrets/
