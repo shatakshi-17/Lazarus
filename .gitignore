@@ -101,3 +101,6 @@ secrets/
 
 .cursor* 
 .cursorignore
+docs/
+Master Implementation Plan.md
+prompt.txt
