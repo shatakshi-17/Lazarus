@@ -1,0 +1,5 @@
+{
+  "extends": "./tsconfig.json",
+  // Unit/e2e tests excluded from VPS deploy artifact.
+  "exclude": ["node_modules", "test", "dist", "**/*spec.ts"]
+}

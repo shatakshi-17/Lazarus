@@ -91,8 +91,10 @@ coverage/
 *.crt
 secrets/
 
-.cursor* 
+.cursor*
 .cursorignore
+
+# Planning docs — local-only via .git/info/exclude; remain visible to Cursor.
 docs/
 Master Implementation Plan.md
 prompt.txt
