@@ -1,0 +1,14 @@
+export const AppConfigKeys = {
+  NODE_ENV: 'NODE_ENV',
+  PORT: 'PORT',
+  HOST: 'HOST',
+  KAFKA_BROKERS: 'KAFKA_BROKERS',
+  KAFKA_CLIENT_ID: 'KAFKA_CLIENT_ID',
+  KAFKA_ANOMALY_TOPIC: 'KAFKA_ANOMALY_TOPIC',
+  LAZARUS_PRODUCE_DEMO_ANOMALY: 'LAZARUS_PRODUCE_DEMO_ANOMALY',
+  REDIS_URL: 'REDIS_URL',
+  DOCKER_HOST: 'DOCKER_HOST',
+} as const;
+
+export type AppConfigKey =
+  (typeof AppConfigKeys)[keyof typeof AppConfigKeys];
