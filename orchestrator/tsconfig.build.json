@@ -1,0 +1,7 @@
+{
+  // Production build config — extends the main tsconfig.json above.
+  // "extends" means: inherit all compilerOptions, then apply overrides below.
+  "extends": "./tsconfig.json",
+  // Exclude tests from `npm run build` output — tests are not shipped to production.
+  "exclude": ["node_modules", "test", "dist", "**/*spec.ts"]
+}

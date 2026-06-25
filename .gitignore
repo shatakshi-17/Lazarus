@@ -99,10 +99,7 @@ coverage/
 *.crt
 secrets/
 
-.cursor* 
+.cursor*
 .cursorignore
-docs/
-Master Implementation Plan.md
-prompt.txt
-arch_*.md
-arch_01.md
+
+# Planning docs & arch logs — ignored locally via .git/info/exclude (not committed, visible to Cursor)
