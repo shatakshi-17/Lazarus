@@ -1,4 +1,3 @@
-// Cross-plane contract §5.1 — mirrored by Python Pydantic consumer in Phase 2.
 import {
   IsEnum,
   IsISO8601,
@@ -25,7 +24,6 @@ export enum Severity {
   CRITICAL = 'critical',
 }
 
-// @IsNumber() cannot validate dynamic object keys — custom constraint required for metrics map.
 @ValidatorConstraint({ name: 'isRecordOfNumbers', async: false })
 export class IsRecordOfNumbersConstraint implements ValidatorConstraintInterface {
   validate(value: unknown): boolean {
@@ -62,7 +60,6 @@ export class IngestAnomalyDto {
   @IsUUID('4')
   anomaly_id!: string;
 
-  // Partition key — per-source ordering §5.2 P2.
   @IsString()
   @IsNotEmpty()
   @MaxLength(256)
@@ -85,7 +82,6 @@ export class IngestAnomalyDto {
   @IsString()
   stack_trace?: string;
 
-  // Not emitted as Kafka headers — §5.2 set is anomaly_type, severity, trace_id only.
   @IsOptional()
   @IsObject()
   @Validate(IsRecordOfStringsConstraint)

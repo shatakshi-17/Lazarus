@@ -1,4 +1,3 @@
-# GitOps dashboard reload without container restart (see updateIntervalSeconds).
 apiVersion: 1
 
 providers:
