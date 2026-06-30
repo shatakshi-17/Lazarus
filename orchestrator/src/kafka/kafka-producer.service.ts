@@ -15,7 +15,6 @@ import { AppConfigKeys } from '../config/app.config';
 import { IngestAnomalyDto } from '../common/dto/ingest-anomaly.dto';
 import './kafka-lz4.codec';
 
-// acks -1 — production durability intent on KVM2; dev single-broker would behave similarly at acks 1.
 const PRODUCER_ACKS_ALL = -1;
 
 @Injectable()
@@ -60,13 +59,11 @@ export class KafkaProducerService implements OnModuleInit, OnModuleDestroy {
     this.kafka = new Kafka({
       clientId,
       brokers,
-      // Broker connection retry — separate failure domain from produce-level retry below.
       retry: { retries: 5 },
     });
 
     this.producer = this.kafka.producer({
       retry: { retries: 5 },
-      // Single-node dev — topic materializes on first produce; prod should pre-create topics.
       allowAutoTopicCreation: true,
     });
 
@@ -95,7 +92,6 @@ export class KafkaProducerService implements OnModuleInit, OnModuleDestroy {
           headers: {
             anomaly_type: dto.anomaly_type,
             severity: dto.severity,
-            // §5.1 DTO has no trace_id field; §5.2 header contract maps anomaly_id → trace_id.
             trace_id: dto.anomaly_id,
           },
         },
@@ -103,5 +99,13 @@ export class KafkaProducerService implements OnModuleInit, OnModuleDestroy {
     });
 
     return metadata;
+  }
+
+  async produceAnomalyBatch(dtos: IngestAnomalyDto[]): Promise<RecordMetadata[]> {
+    if (dtos.length === 0) {
+      return [];
+    }
+
+    return Promise.all(dtos.map((dto) => this.produceAnomaly(dto)));
   }
 }

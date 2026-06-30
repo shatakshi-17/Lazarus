@@ -38,11 +38,9 @@ htmlcov/
 .hypothesis/
 poetry.lock.bak
 
-# Local Compose overrides — never committed.
 docker-compose.override.yml
 docker-compose.*.local.yml
 
-# Runtime TSDB/UI volumes — tracked config lives alongside, not under data/.
 infra/prometheus/data/
 infra/grafana/data/
 *.wal
@@ -65,7 +63,6 @@ ehthumbs.db
 Thumbs.db
 Desktop.ini
 
-# OneDrive sync artifacts — plan risk R6 (Windows dev on synced Desktop).
 ~$*
 *.odtmp
 *.tmp.driveupload
@@ -78,7 +75,6 @@ Desktop.ini
 !.vscode/settings.json.example
 *.code-workspace
 
-# Agent hook queue only — shared .cursor/rules remain tracked.
 .cursor/.pending_log.json
 
 load-testing/results/
@@ -94,7 +90,6 @@ secrets/
 .cursor*
 .cursorignore
 
-# Planning docs — local-only via .git/info/exclude; remain visible to Cursor.
 docs/
 Master Implementation Plan.md
 prompt.txt

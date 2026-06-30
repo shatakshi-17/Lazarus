@@ -1,4 +1,3 @@
-// Stable fixture IDs — Subtask 9 consumer verification greps these constants.
 import {
   AnomalyType,
   IngestAnomalyDto,

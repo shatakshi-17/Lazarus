@@ -1,0 +1,10 @@
+node_modules
+dist
+coverage
+test
+*.md
+.git
+.env
+.env.*
+npm-debug.log*
+*.tsbuildinfo

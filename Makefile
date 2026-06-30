@@ -1,4 +1,3 @@
-# Git Bash on Windows — recipe tools (grep/awk/test) are not available in cmd.exe.
 ifeq ($(OS),Windows_NT)
   SHELL := "C:/Program Files/Git/usr/bin/bash.exe"
   .SHELLFLAGS := -lc
